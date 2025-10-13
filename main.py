@@ -6,7 +6,7 @@ def create_window():
     new_window.title("Alert")
     new_window.geometry("200x110")
 
-
+#Start
 window = Tk()
 window.geometry("520x520")
 window.title("Protectly")
