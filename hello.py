@@ -1,18 +1,11 @@
 from tkinter import *
 
-def display():
-    if(x.get()==1):
-        print("I like python")
-    else:
-        print("I don't like python lesh")
-
 window = Tk()
 
-x = IntVar()
+label1 = Label(window,text="Hello")
+label2 = Label(window,text="Im workiong on python")
 
-checkbox = Checkbutton(window, text='Python', variable=x,onvalue=1,offvalue=0,command=display)
-checkbox.pack()
-checkbox.config(font=('Arial',20))
-checkbox.config(fg='#0000FF')
-checkbox.config(bg='#000000')
+label1.grid(row=0, column=0)
+label2.grid(row=1, column=0)
+
 window.mainloop()
