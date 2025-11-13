@@ -17,8 +17,7 @@ def fire_create_window():
     fire_window = Toplevel()
     fire_window.title("Fire Window")
     fire_window.geometry("600x720")
-
-    fire_image = Image.open("fire_emergency.png")
+    fire_image = Image.open("storage/image/emergecy_instructions/fire_emergency.png")
     fire_photo = ImageTk.PhotoImage(fire_image)
     label = Label(fire_window, 
                 image=fire_photo,
@@ -53,7 +52,7 @@ def medical_create_window():
     medical_window.title("Medical")
     medical_window.geometry("600x720")
 
-    medical_image = Image.open("medical_emergencyy.png")
+    medical_image = Image.open("storage/image/emergecy_instructions/medical_emergencyy.png")
     medical_photo = ImageTk.PhotoImage(medical_image)
     label = Label(medical_window,
                   image=medical_photo,
@@ -86,7 +85,7 @@ def disaster_create_window():
     disaster_window.title("Disaster")
     disaster_window.geometry("600x720")
    
-    image = Image.open("natural_disaster.png")  
+    image = Image.open("storage/image/emergecy_instructions/natural_disaster.png")  
     photo = ImageTk.PhotoImage(image)
     label = Label(disaster_window,
                   image=photo,
