@@ -1,4 +1,4 @@
-Police: 117
-Fire Department: 911
-Medical Emergency: 143
-TB Number: J04QU1N
+
+Fire Emergency - 160
+Natural Disaster - 117
+Medical / Ambulance - 1555
