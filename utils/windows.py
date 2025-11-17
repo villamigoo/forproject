@@ -1,5 +1,4 @@
 from tkinter import * 
-from PIL import Image, ImageTk
 from tkvideo import tkvideo
 
 def create_window():
@@ -17,7 +16,7 @@ def create_window():
 def fire_create_window():
     fire_window = Toplevel()
     fire_window.title("Fire Window")
-    fire_window.geometry("800x750")
+    fire_window.geometry("800x770")
     video_label = Label(fire_window)
     video_label.pack()
 
@@ -43,7 +42,7 @@ def fire_create_window():
 
     text_label = Label(fire_window,
                        text=instructions,
-                       font=("Arial", 12),
+                       font=("Arial", 14),
                        padx=20,
                        pady=10)
     text_label.pack()
@@ -52,7 +51,7 @@ def fire_create_window():
 def medical_create_window():
     medical_window = Toplevel()
     medical_window.title("Fire Window")
-    medical_window.geometry("800x750")
+    medical_window.geometry("800x770")
     medical_video_label = Label(medical_window)
     medical_video_label.pack()
 
@@ -77,7 +76,7 @@ def medical_create_window():
 
     text_label = Label(medical_window,
                        text=medical_instructions,
-                       font=("Arial", 12),
+                       font=("Arial", 14),
                        padx=20,
                        pady=10)
     text_label.pack()
@@ -85,7 +84,7 @@ def medical_create_window():
 def disaster_create_window():
     natural_window = Toplevel()
     natural_window.title("Fire Window")
-    natural_window.geometry("800x750")
+    natural_window.geometry("800x770")
     natural_video_label = Label(natural_window)
     natural_video_label.pack()
 
@@ -111,7 +110,7 @@ def disaster_create_window():
 
     text_label = Label(natural_window,
                        text=disaster_instructions,
-                       font=("Arial", 12),
+                       font=("Arial", 14),
                        padx=20,
                        pady=10)
     text_label.pack()

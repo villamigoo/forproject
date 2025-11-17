@@ -1,7 +1,6 @@
 from tkinter import *
 from utils import windows
 from utils import crud
-import datetime
 
 #COLORS#
 SIDEBAR_COLOR = "dark red"
