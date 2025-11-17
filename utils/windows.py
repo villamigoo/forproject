@@ -1,5 +1,6 @@
 from tkinter import * 
 from PIL import Image, ImageTk
+from tkvideo import tkvideo
 
 def create_window():
     new_window = Toplevel()
@@ -16,15 +17,16 @@ def create_window():
 def fire_create_window():
     fire_window = Toplevel()
     fire_window.title("Fire Window")
-    fire_window.geometry("600x720")
-    fire_image = Image.open("storage/image/emergecy_instructions/fire_emergency.png")
-    fire_photo = ImageTk.PhotoImage(fire_image)
-    label = Label(fire_window, 
-                image=fire_photo,
-                compound="top",
-                font=("Arial",12,"bold"))
-    label.image = fire_photo
-    label.pack()
+    fire_window.geometry("800x750")
+    video_label = Label(fire_window)
+    video_label.pack()
+
+    #PLAYS THE VIDEO# 
+    player = tkvideo("storage/image/emergecy_instructions/Fire Emergency Instructions.mp4",
+                     video_label,
+                     loop=1,
+                     size=(800, 500))
+    player.play()
 
     instructions = (
         " FIRE EMERGENCY INSTRUCTIONS \n\n"
@@ -49,17 +51,17 @@ def fire_create_window():
 #OPENS MEDICAL INSTRUCTIONS#
 def medical_create_window():
     medical_window = Toplevel()
-    medical_window.title("Medical")
-    medical_window.geometry("600x720")
+    medical_window.title("Fire Window")
+    medical_window.geometry("800x750")
+    medical_video_label = Label(medical_window)
+    medical_video_label.pack()
 
-    medical_image = Image.open("storage/image/emergecy_instructions/medical_emergencyy.png")
-    medical_photo = ImageTk.PhotoImage(medical_image)
-    label = Label(medical_window,
-                  image=medical_photo,
-                  compound="top",
-                  font=("Arial",12,"bold"))
-    label.image = medical_photo
-    label.pack()
+    #PLAYS THE VIDEO# 
+    player = tkvideo("storage/image/emergecy_instructions/Medical Instructions.mp4",
+                     medical_video_label,
+                     loop=1,
+                     size=(800, 500))
+    player.play()
 
     medical_instructions = (
         " MEDICAL EMERGENCY INSTRUCTIONS \n\n"
@@ -81,18 +83,18 @@ def medical_create_window():
     text_label.pack()
 
 def disaster_create_window():
-    disaster_window = Toplevel()
-    disaster_window.title("Disaster")
-    disaster_window.geometry("600x720")
-   
-    image = Image.open("storage/image/emergecy_instructions/natural_disaster.png")  
-    photo = ImageTk.PhotoImage(image)
-    label = Label(disaster_window,
-                  image=photo,
-                  compound="top",  
-                  font=("Arial", 12, "bold"))
-    label.image = photo
-    label.pack()
+    natural_window = Toplevel()
+    natural_window.title("Fire Window")
+    natural_window.geometry("800x750")
+    natural_video_label = Label(natural_window)
+    natural_video_label.pack()
+
+    #PLAYS THE VIDEO# 
+    player = tkvideo("storage/image/emergecy_instructions/Natural Disaster Instructions.mp4",
+                     natural_video_label,
+                     loop=1,
+                     size=(800, 500))
+    player.play()
 
     disaster_instructions = (
         " NATURAL DISASTER INSTRUCTIONS \n\n"
@@ -107,7 +109,7 @@ def disaster_create_window():
         "9. Help others and stay alert for aftershocks or secondary hazards."
     )
 
-    text_label = Label(disaster_window,
+    text_label = Label(natural_window,
                        text=disaster_instructions,
                        font=("Arial", 12),
                        padx=20,

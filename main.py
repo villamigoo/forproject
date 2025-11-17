@@ -1,6 +1,7 @@
 from tkinter import *
-from PIL import Image, ImageTk
 from utils import windows
+from utils import crud
+import datetime
 
 #COLORS#
 SIDEBAR_COLOR = "dark red"
@@ -180,6 +181,18 @@ def show_content(screen):
                     bg=BUTTON_COLOR,
                     command=lambda h=cleaned: open_update_window(h)
                     ).pack(side="left", padx=10)
+                
+    elif screen == "about":
+        Label(right_frame,
+                    text="Welcome to Protectly!\n\n"
+                    "Protectly is an Emergency Safety App designed to help users quickly access "
+                    "emergency panic buttons, instructions for fire, medical, and natural disaster "
+                    "situations, and store important hotlines.\n\n"
+                    "Stay safe and be prepared!",
+                    font=("Arial", 14),
+                    bg=WINDOW_COLOR,
+                    justify="left",
+                    wraplength=600).pack(pady=40, padx=20)
               
 #-------------------------------------#
 
