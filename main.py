@@ -92,7 +92,7 @@ def show_content(screen):
                 text="Welcome to Protectly!",
                 font=("Arial", 40, "bold"),
                 bg=WINDOW_COLOR,
-                fg=TITLE_TEXT_COLOR).place(x=100, y=30)
+                fg=TITLE_TEXT_COLOR).place(x=90, y=30)
         
         logo_raw = PhotoImage(file="storage/image/emergecy_instructions/app logo.png")
         logo_image = logo_raw
@@ -146,7 +146,7 @@ def show_content(screen):
 #SWITCHES TO DIFFERENT WINDOWS#
     elif screen == "instructions":
         Label(right_frame,
-                text = "This is the emergency section\nClick a button to see the emergency instructions based on the category.",
+                text = "Emergency Instructions section\nClick a button to see the emergency instructions based on the category.",
                 font = ("Arial", 15, "bold"),
                 bg = TEXT_COLOR).pack(pady=40)
         
@@ -202,11 +202,10 @@ def show_content(screen):
 #SWITCHES TO ADD HOTLINES WINDOW#
     elif screen == "add_hotlines":
         Label(right_frame,
-            text="This is the add hotlines section",
+            text="Add hotlines section",
             font=("Arial", 20, "bold"),
             bg=TEXT_COLOR).pack(pady=20)
 
-        # ENTRY + BUTTON FIRST
         entry_row = Frame(right_frame, bg=WINDOW_COLOR)
         entry_row.pack(pady=10)
 
@@ -222,7 +221,6 @@ def show_content(screen):
             command=lambda: add_hotline(entry)
             ).pack(side="left", padx=5)
 
-        # THEN THE HOTLINES LIST UNDER IT
         list_frame = Frame(right_frame, bg=WINDOW_COLOR)
         list_frame.pack(pady=10, anchor="w", padx=30)
 
