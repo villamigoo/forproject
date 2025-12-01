@@ -165,6 +165,15 @@ def show_content(screen):
             width=5,
             command=lambda: add_hotline(entry, show_content)
             ).pack(side="left", padx=5)
+        
+        Button(entry_row,
+            text="📞",
+            font=("Arial", 14),
+            bg=BUTTON_COLOR,
+            fg=BUTTON_TEXT_COLOR,
+            width=3,
+            command=lambda: call_hotline_window("")
+            ).pack(side="left", padx=5)
 
         list_frame = Frame(right_frame, bg=WINDOW_COLOR)
         list_frame.pack(pady=10, anchor="w", padx=30)
@@ -223,15 +232,6 @@ def show_content(screen):
                     width=3,
                     command=lambda h=cleaned: copy_hotline_to_clipboard(window, h)
                     ).grid(row=i, column=3, padx=5, pady=5)
-                
-                Button(entry_row,
-                    text="📞",
-                    font=("Arial", 14),
-                    bg=BUTTON_COLOR,
-                    fg=BUTTON_TEXT_COLOR,
-                    width=3,
-                    command=lambda h=cleaned: call_hotline_window(show_content)
-                    ).pack(side="left", padx=5)
                         
     elif screen == "about":
         Label(right_frame,
@@ -244,7 +244,7 @@ def show_content(screen):
                     bg=WINDOW_COLOR,
                     justify="left",
                     wraplength=600).pack(pady=40, padx=20)
-              
+        
 #-------------------------------------#
 
 #WINDOW FOR PANIC BUTTON, SIZE, TITLE#

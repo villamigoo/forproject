@@ -10,7 +10,7 @@ def copy_hotline_to_clipboard(window, text):
     messagebox.showinfo("Copied", "Hotline number copied!")
 
 #WINDOW FOR CALL HOTLINE#
-def call_hotline_window(show_content):
+def call_hotline_window(hotline_number):
     call_win = Toplevel()
     call_win.title("Call Hotline")
     call_win.geometry("350x150")
@@ -21,6 +21,7 @@ def call_hotline_window(show_content):
 
     number_entry = Entry(call_win, font=("Arial", 14), width=20)
     number_entry.pack(pady=5)
+    number_entry.insert(0, hotline_number)
 
     def start_call():
         number = number_entry.get().strip()
@@ -33,12 +34,11 @@ def call_hotline_window(show_content):
     Button(call_win, text="Call", font=("Arial", 12, "bold"), bg="green", fg="white",
            command=start_call).pack(pady=10)
 
-
 #ADDS THE TYPED NUMBER TO THE HOTLINES LIST WINDOW"
 def add_hotline(entry, show_content):
     hotline = entry.get().strip()
 
-    if not re.fullmatch(r"[A-Za-z -]+ \d{3,}", hotline):
+    if not re.fullmatch(r"[A-Za-z - ]+ [\d () -]{3,}", hotline):
         messagebox.showerror(
             "Invalid Input", 
             "Please enter in this format: Name (letters only) followed by number (at least 3 digits)."
