@@ -1,24 +1,33 @@
 from tkinter import * 
 from tkvideo import tkvideo
+from playsound3 import playsound
+import threading
+
+def play_sound(window):
+    threading.Thread(target=lambda: playsound("storage/image/emergecy_instructions/sound.mp3")).start()
 
 def create_window():
     new_window = Toplevel()
     new_window.title("Panic Window")
+    new_window.resizable(False, False)
     new_window.geometry(f"+{(new_window.winfo_screenwidth()-400)//2}+{(new_window.winfo_screenheight()-80)//2}")
     new_window.geometry("400x80")
+
+    play_sound(new_window)
     
     label = Label(
                 new_window,
-                text="Hotline contacts have been contacted!",
+                text="911 has been contacted!",
                 font=('Arial', 12, 'bold'),
                 fg="#b71c1c")
-    label.place(x=55, y=25)
+    label.place(x=110, y=25)
 
 def fire_create_window():
     fire_window = Toplevel()
     fire_window.title("Fire Window")
     fire_window.geometry("800x770")
     fire_window.geometry(f"+{(fire_window.winfo_screenwidth()-800)//2}+{(fire_window.winfo_screenheight()-770)//2}")
+    fire_window.resizable(False, False)
     video_label = Label(fire_window)
     video_label.pack()
 
@@ -61,9 +70,10 @@ def fire_create_window():
 #OPENS MEDICAL INSTRUCTIONS#
 def medical_create_window():
     medical_window = Toplevel()
-    medical_window.title("Fire Window")
+    medical_window.title("Medical Window")
     medical_window.geometry("800x770")
     medical_window.geometry(f"+{(medical_window.winfo_screenwidth()-800)//2}+{(medical_window.winfo_screenheight()-770)//2}")
+    medical_window.resizable(False, False)
     medical_video_label = Label(medical_window)
     medical_video_label.pack()
 
@@ -104,9 +114,10 @@ def medical_create_window():
 
 def disaster_create_window():
     natural_window = Toplevel()
-    natural_window.title("Fire Window")
+    natural_window.title("Natural Disaster Window")
     natural_window.geometry("800x770")
     natural_window.geometry(f"+{(natural_window.winfo_screenwidth()-800)//2}+{(natural_window.winfo_screenheight()-770)//2}")
+    natural_window.resizable(False, False)
     natural_video_label = Label(natural_window)
     natural_video_label.pack()
 
@@ -151,6 +162,7 @@ def crime_security_create_window():
     crime_security_window.title("Crime & Security")
     crime_security_window.geometry("800x770")
     crime_security_window.geometry(f"+{(crime_security_window.winfo_screenwidth()-800)//2}+{(crime_security_window.winfo_screenheight()-770)//2}")
+    crime_security_window.resizable(False, False)
     crime_security_video_label = Label(crime_security_window)
     crime_security_video_label.pack()
 
@@ -196,6 +208,7 @@ def chemical_create_window():
     chemical_window.title("Chemical / Hazardous Materials")
     chemical_window.geometry("800x770")
     chemical_window.geometry(f"+{(chemical_window.winfo_screenwidth()-800)//2}+{(chemical_window.winfo_screenheight()-770)//2}")
+    chemical_window.resizable(False, False)
     chemical_video_label = Label(chemical_window)
     chemical_video_label.pack()
 
@@ -239,6 +252,7 @@ def transportation_create_window():
     transportation_window.title("Transportation")
     transportation_window.geometry("800x770")
     transportation_window.geometry(f"+{(transportation_window.winfo_screenwidth()-800)//2}+{(transportation_window.winfo_screenheight()-770)//2}")
+    transportation_window.resizable(False, False)
     transportation_video_label = Label(transportation_window)
     transportation_video_label.pack()
 

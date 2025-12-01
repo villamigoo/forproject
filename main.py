@@ -1,6 +1,6 @@
 from tkinter import *
+from utils.crud import *
 from utils import windows
-from utils import crud
 from tkinter import PhotoImage
 
 #COLORS#
@@ -12,74 +12,16 @@ UPDATE_BUTTON_COLOR = "green"
 BUTTON_TEXT_COLOR = "white"
 TITLE_TEXT_COLOR = "black"
 TEXT_COLOR = "white"
-WINDOW_COLOR ="white"
-
-active_button = None
+WINDOW_COLOR ="white" 
 
 #SUNKEN BUTTON FEEL#
+active_button = None
 def set_active(btn):
         global active_button
         if active_button:  
             active_button.config(relief="raised", bg=BUTTON_COLOR)
         btn.config(relief="sunken") 
         active_button = btn
-
-#ADDS THE TYPED NUMBER TO THE HOTLINES LIST WINDOW"
-def add_hotline(entry):
-    hotline = entry.get().strip()
-    if hotline:
-        with open("hotlineslist.txt", "a", encoding="utf-8") as file:
-            file.write(hotline + "\n")
-        entry.delete(0, END)
-    show_content("add_hotlines")
-
-#UPDATES HOTLINE#
-def update_hotline(old_value, new_value):
-    with open("hotlineslist.txt", "r", encoding="utf-8") as file:
-        lines = file.readlines()
-
-    with open("hotlineslist.txt", "w", encoding="utf-8") as file:
-        for line in lines:
-            if line.strip() == old_value.strip():
-                file.write(new_value + "\n")
-            else:
-                file.write(line)
-
-def open_update_window(old_value):
-    update_win = Toplevel()
-    update_win.title("Update Hotline")
-    update_win.geometry("400x200")
-
-    Label(update_win, text="Update Hotline:", font=("Arial", 14)).pack(pady=10)
-
-    entry = Entry(update_win, font=("Arial", 14), width=25)
-    entry.pack(pady=5)
-    entry.insert(0, old_value)
-
-    def save_update():
-        new_value = entry.get().strip()
-        if new_value:
-            update_hotline(old_value, new_value)
-            show_content("add_hotlines")
-            update_win.destroy()
-
-    Button(update_win,
-           text="Save",
-           font=("Arial", 12, "bold"),
-           bg=BUTTON_COLOR,
-           fg=WINDOW_COLOR,
-           command=save_update).pack(pady=10)
-
-#DELETES HOTLINE#
-def delete_specific_hotline(hotline):
-    with open("hotlineslist.txt", "r", encoding="utf-8") as file:
-        lines = file.readlines()
-
-    with open("hotlineslist.txt", "w", encoding="utf-8") as file:
-        for line in lines:
-            if line.strip() != hotline:
-                file.write(line)
-    show_content("add_hotlines")
 
 #RIGHT SIDE WINDOW#
 def show_content(screen):
@@ -94,7 +36,7 @@ def show_content(screen):
                 bg=WINDOW_COLOR,
                 fg=TITLE_TEXT_COLOR).place(x=90, y=30)
         
-        logo_raw = PhotoImage(file="storage/image/emergecy_instructions/app logo.png")
+        logo_raw = PhotoImage(file="storage/image/emergecy_instructions/app_logo.png")
         logo_image = logo_raw
 
         logo_canvas = Canvas(right_frame,
@@ -107,10 +49,11 @@ def show_content(screen):
         logo_canvas.image = logo_image
 
         Label(right_frame,
-        text="Your safety, one click away.\nStay calm, stay prepared, and Protectly will guide you.",
-        font=("Arial", 16, "italic"),
-        bg=WINDOW_COLOR,
-        fg=HOME_TEXT_COLOR).pack(pady=(500, 50))
+                text="Your safety, one click away.\n" \
+                "Stay calm, stay prepared, and Protectly will guide you.",
+                font=("Arial", 16, "italic"),
+                bg=WINDOW_COLOR,
+                fg=HOME_TEXT_COLOR).pack(pady=(500, 50))
     
 
 #SWITCHES TO PANIC BUTTON#
@@ -122,8 +65,9 @@ def show_content(screen):
         
         Label(right_frame,
                 text="Instructions: In case of danger, press the button below.\n"
-                     "It will instantly send an alert to your hotline contacts.\n"
-                     "so they can respond to the emergency as fast as possible.",
+                     "It will instantly send an alert to 911 \n"
+                     "so trained emergency responders can be dispatched to \n"
+                     "your location as quickly as possible.",
                 font=("Arial", 14, "bold"),
                 bg=TEXT_COLOR,
                 fg=PANIC_BUTTON_TEXT).pack(pady=5)
@@ -146,11 +90,12 @@ def show_content(screen):
 #SWITCHES TO DIFFERENT WINDOWS#
     elif screen == "instructions":
         Label(right_frame,
-                text = "Emergency Instructions section\nClick a button to see the emergency instructions based on the category.",
+                text = "Emergency Instructions section\n" \
+                "Click a button to see the emergency instructions based on the category.",
                 font = ("Arial", 15, "bold"),
                 bg = TEXT_COLOR).pack(pady=40)
         
-        #EMERGENCY INSTRUCTION IMAGES#
+        #EMERGENCY INSTRUCTION BUTTONS#
         Button(right_frame,
                 text="Fire",
                 command=windows.fire_create_window,
@@ -218,7 +163,7 @@ def show_content(screen):
             bg=BUTTON_COLOR,
             fg=BUTTON_TEXT_COLOR,
             width=5,
-            command=lambda: add_hotline(entry)
+            command=lambda: add_hotline(entry, show_content)
             ).pack(side="left", padx=5)
 
         list_frame = Frame(right_frame, bg=WINDOW_COLOR)
@@ -254,8 +199,8 @@ def show_content(screen):
                     font=("Arial", 12, "bold"),
                     fg=WINDOW_COLOR,
                     bg=BUTTON_COLOR,
-                    width=10,
-                    command=lambda h=cleaned: delete_specific_hotline(h)
+                    width=6,
+                    command=lambda h=cleaned: delete_specific_hotline(h, show_content)
                     ).grid(row=i, column=1, padx=5, pady=5)
 
                 Button(list_frame,
@@ -263,10 +208,31 @@ def show_content(screen):
                     font=("Arial", 12, "bold"),
                     fg=WINDOW_COLOR,
                     bg=UPDATE_BUTTON_COLOR,
-                    width=10,
-                    command=lambda h=cleaned: open_update_window(h)
+                    width=6,
+                    command=lambda h=cleaned: open_update_window(h,
+                                                                show_content,
+                                                                BUTTON_COLOR,
+                                                                WINDOW_COLOR)
                     ).grid(row=i, column=2, padx=5, pady=5)
                 
+                Button(list_frame,
+                    text="📄",
+                    font=("Arial", 12),
+                    bg=BUTTON_COLOR,
+                    fg=BUTTON_TEXT_COLOR,
+                    width=3,
+                    command=lambda h=cleaned: copy_hotline_to_clipboard(window, h)
+                    ).grid(row=i, column=3, padx=5, pady=5)
+                
+                Button(entry_row,
+                    text="📞",
+                    font=("Arial", 14),
+                    bg=BUTTON_COLOR,
+                    fg=BUTTON_TEXT_COLOR,
+                    width=3,
+                    command=lambda h=cleaned: call_hotline_window(show_content)
+                    ).pack(side="left", padx=5)
+                        
     elif screen == "about":
         Label(right_frame,
                     text="Welcome to Protectly!\n\n"
@@ -287,7 +253,6 @@ window.geometry("1080x720")
 window.geometry(f"+{(window.winfo_screenwidth()-1080)//2}+{(window.winfo_screenheight()-720)//2}")
 window.title("Protectly")
 window.resizable(False, False)
-window.attributes('-toolwindow', True)
 
 #SIDEBAR#
 sidebar = Frame(window,
@@ -306,8 +271,7 @@ sidebar_name = Label(sidebar,
                 font=("Arial", 16, "bold"))
 sidebar_name.pack(pady=30)
 
-
-logo_raw = PhotoImage(file="storage/image/emergecy_instructions/app logo.png")
+logo_raw = PhotoImage(file="storage/image/emergecy_instructions/app_logo.png")
 logo_image = logo_raw
 
 logo_canvas = Canvas(sidebar,
