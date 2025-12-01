@@ -38,16 +38,24 @@ def call_hotline_window(hotline_number):
 def add_hotline(entry, show_content):
     hotline = entry.get().strip()
 
-    if not re.fullmatch(r"[A-Za-z - ]+ [\d () -]{3,}", hotline):
+    if not re.fullmatch(r"[A-Za-z][A-Za-z .,&()-]{3,}\s*-\s*[\d ()-]{3,}", hotline):
         messagebox.showerror(
             "Invalid Input", 
             "Please enter in this format: Name (letters only) followed by number (at least 3 digits)."
         )
         return
    
+   #CHECKS IF NUMBER IS ALREADY IN HOTLINES LIST#
+    number_part = "".join(re.findall(r"\d+", hotline.split("-", 1)[1]))
+    existing = { "".join(re.findall(r"\d+", line.split("-", 1)[1])) for line in open("hotlineslist.txt", encoding="utf-8") }
+
+    if number_part in existing:
+        messagebox.showerror("Duplicate Hotline", f"The number {number_part} already exists!")
+        return
+
+    # AVE IF NO DUPLICATE#
     with open("hotlineslist.txt", "a", encoding="utf-8") as file:
         file.write(hotline + "\n")
-    entry.delete(0, END)
   
     messagebox.showinfo("Success", "Hotline added successfully!")
 
